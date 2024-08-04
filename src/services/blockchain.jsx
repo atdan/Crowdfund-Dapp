@@ -51,7 +51,46 @@ const isWalletConnected = async () => {
     }
 }
 
+const getEthereumContract = async () => {
+    const connectedAccount = getGlobalState('connectedAccount')
+
+    if (connectedAccount) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractAbi, signer)
+
+        return contract;
+    }else {
+        return getGlobalState('contract')
+    }
+}
+
+const createProject = async ({
+    title,
+    description,
+    imageUrl,
+    cost,
+    expiresAt
+}) => {
+    try {
+        if (!ethereum) return alert('Please install metamask')
+
+        const contract = await getEthereumContract();
+        cost = ethers.utils.parseEther(cost);
+        await contract.createProject(title, description, imageUrl, cost, expiresAt)
+
+        
+        //await loadProjects() // the blockchain is too slow for this
+        //window.location.reload() 
+    }catch(e) {
+        reportError(e) 
+    }
+    
+}
+
 export {
     connectWallet,
-    isWalletConnected
+    isWalletConnected,
+    getEthereumContract,
+    createProject,
 }
