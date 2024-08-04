@@ -1,4 +1,5 @@
 import React from 'react'
+import { setGlobalState } from '../store'
 
 const Hero = () => {
   return (
@@ -11,30 +12,31 @@ const Hero = () => {
 
 
         <div className='flex justify-center items-center space-x-2'>
-            <button className='inline-block bg-red-400 px-6 py-2.5 bg-green-600
-            text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-700'>
+            <button className='inline-block px-6 py-2.5 bg-green-600
+            text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md 
+            hover:bg-green-700' onClick={() => setGlobalState('createModal', 'scale-100')}>
                 Add Project
             </button>
 
             <button className='inline-block bg-white px-6 py-2.5 border border-green-600
             text-green-600 font-medium text-xs leading-tight uppercase rounded-full shadow-md 
-            hover:bg-green-600 hover:text-white'>
+            hover:bg-green-500 hover:text-white'>
                 Back Projects
             </button>
         </div>
 
         <div className='flex justify-center items-center mt-10'>
-            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full'>
+            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full hover:bg-gray-50'>
                 <span className='text-lg font-bold text-green-900 leading-5'>{0}</span>
                 <span>Projects</span>
             </div>
 
-            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full'>
+            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full hover:bg-gray-50'>
                 <span className='text-lg font-bold text-green-900 leading-5'>{0}</span>
                 <span>Backings</span>
             </div>
 
-            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full'>
+            <div className='flex flex-col justify-center items-center h-20 border shadow-md w-full hover:bg-gray-50'>
                 <span className='text-lg font-bold text-green-900 leading-5'>{0} ETH</span>
                 <span>Donated</span>
             </div>

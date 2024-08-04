@@ -14,7 +14,7 @@ const Projects = () => {
 }
 
 const ProjectCard = ({card, id}) => (
-    <div id='projects' className='rounded-lg shadow-lg bg-white w-64 m-4'>
+    <div id='projects' className='rounded-lg shadow-lg bg-white w-64 m-4 hover:bg-gray-50'>
         <Link to={`projects/` + id}>
             <img 
             src='https://www.chainalysis.com/wp-content/uploads/2022/02/bloggraphic-blockchains-01-1-1500x818.png'
