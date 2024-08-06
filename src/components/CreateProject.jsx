@@ -11,7 +11,7 @@ export const CreateProject = () => {
     const [description, setDescription] = useState('')
     const [cost, setCost] = useState('')
     const [date, setDate] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageURL, setImageURL] = useState('')
 
     const toTimestamp = (dateStr) => {
         const dateObj = Date.parse(dateStr);
@@ -20,16 +20,16 @@ export const CreateProject = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!title || !description || !cost || !date || !imageUrl) return
+        if(!title || !description || !cost || !date || !imageURL) return
 
         const params = {
             title,
             description,
             cost,
             expiresAt: toTimestamp(date),
-            imageUrl
+            imageURL
         }
-        console.log(params)
+        console.log(`Submit params: ${params}`)
 
         await createProject(params);
         toast.success('Project created successfully, will reflect in 30 seconds')
@@ -45,7 +45,7 @@ export const CreateProject = () => {
         setTitle('')
         setDescription('')
         setCost('')
-        setImageUrl('')
+        setImageURL('')
         setDate('')
     }
   return (
@@ -56,7 +56,8 @@ export const CreateProject = () => {
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                     <div className="flex justify-between items-center">
                         <p className="font-semibold">Add Project</p>
-                        <button type="button" className="border-0 bg-transparent focus:outline-none"
+                        <button type="button" 
+                            className="border-0 bg-transparent focus:outline-none"
                             onClick={onClose}>
                             <FaTimes />
                         </button>
@@ -65,7 +66,7 @@ export const CreateProject = () => {
                     <div className="flex justify-center items-center mt-3">
                         <div className="rounded-xl overflow-hidden h-20 w-20 flex justify-center items-center">
                              <img
-                                src={imageUrl || 
+                                src={imageURL || 
                                     'https://www.chainalysis.com/wp-content/uploads/2022/02/bloggraphic-blockchains-01-1-1500x818.png'
                                 }
                                 alt='project title'
@@ -116,10 +117,10 @@ export const CreateProject = () => {
                         <input className="block w-full bg-transparent border-0 
                             text-sm text-slate-500 focus:outline-none focus:ring-0 p-2"
                             type="url"
-                            name="imageUrl"
+                            name="imageURL"
                             placeholder="Image URL"
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            value={imageUrl}
+                            onChange={(e) => setImageURL(e.target.value)}
+                            value={imageURL}
                             required/>
                     </div>
 

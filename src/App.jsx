@@ -4,21 +4,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from "./components/Header.jsx"
 import Home from "./views/Home.jsx"
 import { Project } from "./views/Project.jsx"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { isWalletConnected } from "./services/blockchain.jsx"
 
 const App = () => {
+  const[loaded, setLoaded] = useState(false)
   useEffect(async() => {
     await isWalletConnected() // automatically connect to metamask wallet on load
     console.log('Blockchain loaded')
+    setLoaded(true)
   }, [])
+
   return (
     <div className="min-h-screen">
       <Header/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/projects/:id" element={<Project/>}/>
-      </Routes>
+      { loaded ? (
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/projects/:id" element={<Project/>}/>
+        </Routes>
+        ): null}
 
       <ToastContainer
         position="bottom-center"

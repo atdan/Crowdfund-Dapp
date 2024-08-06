@@ -4,6 +4,14 @@ const fs = require('fs')
 async function main() {
   const taxFee = 5
   const contract_name = 'CrowdFund'
+
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
+
+  const balance = await deployer.getBalance();
+  console.log("Account balance:", balance.toString());
+
+
   const Contract = await ethers.getContractFactory(contract_name)
   const contract = await Contract.deploy(taxFee)
 

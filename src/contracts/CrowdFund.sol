@@ -71,7 +71,7 @@ contract CrowdFund {
         require(bytes(title).length > 0, "Title cannot be empty");
         require(bytes(description).length > 0, "Description cannot be empty");
         require(bytes(imageURL).length > 0, "Image URL cannot be empty");
-        require(cost > 0, "Cost cannot be zero");
+        require(cost > 0 ether, "Cost cannot be zero");
         // require(expiresAt > block.timestamp, "expires must be greater than block timestamp");
 
         projectStruct memory project;
@@ -240,7 +240,7 @@ contract CrowdFund {
 
     function payoutProject(uint id) public returns (bool) {
         require(projects[id].status == statusEnum.APPROVED, "Project no longer APPROVED");
-        require(projects[id].raised >= balance, "Insufficient Fund");
+        // require(projects[id].raised >= balance, "Insufficient Fund");
         require(msg.sender == projects[id].owner ||
             msg.sender == owner, "Unauthorized Entity");
 

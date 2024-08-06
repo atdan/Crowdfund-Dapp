@@ -6,7 +6,9 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
     updateModal: 'scale-0',
     backModal: 'scale-0',
     deleteModal: 'scale-0',
-    connectedAccount: ''
+    connectedAccount: '',
+    projects: [],
+    stats: null,
 });
 
 const truncate = (text, startChars, endChars, maxLength) => {
@@ -25,10 +27,11 @@ const truncate = (text, startChars, endChars, maxLength) => {
 const daysRemaining = (days) => {
     const todaysDate = moment();
     days = Number((days + '000').slice(0))
-    days = moment(days).format('YY-MM-DD')
+    days = moment(days).format('YYYY-MM-DD')
     days = moment(days)
     days = days.diff(todaysDate, 'days')
-    return days == 1 ? '1 day': days + 'days'
+
+    return days == 1 ? '1 day ': days + ' days '
 }
 
 export {
