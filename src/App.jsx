@@ -1,29 +1,29 @@
-import { Route, Routes } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './views/Home'
+import Project from './views/Project'
+import { isWalletConnected } from './services/blockchain'
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
-import Header from "./components/Header.jsx"
-import Home from "./views/Home.jsx"
-import { Project } from "./views/Project.jsx"
-import { useEffect, useState } from "react"
-import { isWalletConnected } from "./services/blockchain.jsx"
 
 const App = () => {
-  const[loaded, setLoaded] = useState(false)
-  useEffect(async() => {
-    await isWalletConnected() // automatically connect to metamask wallet on load
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(async () => {
+    await isWalletConnected()
     console.log('Blockchain loaded')
     setLoaded(true)
   }, [])
 
   return (
-    <div className="min-h-screen">
-      <Header/>
-      { loaded ? (
+    <div className="min-h-screen relative">
+      <Header />
+      {loaded ? (
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/projects/:id" element={<Project/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:id" element={<Project />} />
         </Routes>
-        ): null}
+      ) : null}
 
       <ToastContainer
         position="bottom-center"
