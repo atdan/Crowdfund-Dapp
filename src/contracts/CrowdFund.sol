@@ -239,7 +239,7 @@ contract CrowdFund {
     }
 
     function payoutProject(uint id) public returns (bool) {
-        require(projects[id].status == statusEnum.APPROVED, "Project no longer APPROVED");
+        require(projects[id].status == statusEnum.APPROVED, "Project not APPROVED");
         // require(projects[id].raised >= balance, "Insufficient Fund");
         require(msg.sender == projects[id].owner ||
             msg.sender == owner, "Unauthorized Entity");

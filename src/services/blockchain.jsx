@@ -183,7 +183,7 @@ const payoutProject = async (id) => {
   }
 }
 
-const structuredBackers = (backers) =>
+const structuredBackers = (backers) => {
   backers
     .map((backer) => ({
       owner: backer.owner.toLowerCase(),
@@ -192,6 +192,7 @@ const structuredBackers = (backers) =>
       contribution: parseInt(backer.contribution._hex) / 10 ** 18,
     }))
     .reverse()
+}
 
 const structuredProjects = (projects) =>
   projects
